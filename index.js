@@ -7,7 +7,13 @@ const User = require("./modules/User");
 const { encrypt, decrypt } = require("./helpers/crypto");
 
 const token = process.env.TELEGRAM_BOT_API_KEY;
-const bot = new TelegramBot(token, { polling: true });
+let bot;
+if (process.env.NODE_ENV === "production") {
+  bot = new TelegramBot(token);
+  bot.setWebHook(process.env.HEROKU_URL + bot.token);
+} else {
+  bot = new TelegramBot(token, { polling: true });
+}
 
 const app = express();
 const db = process.env.MONGODB_URL;
@@ -32,7 +38,7 @@ const startBot = () => {
     const chatId = msg.chat.id;
     const text = msg.text;
     if (text === "/start") {
-      bot.sendMessage(chatId, "*Добро пожаловать в мой телеграм бот*");
+      bot.sendMessage(chatId, "Добро пожаловать в мой телеграм бот");
     }
 
     if (text === "/info") {
