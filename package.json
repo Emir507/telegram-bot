@@ -1,0 +1,22 @@
+{
+  "name": "telegram-bot",
+  "version": "1.0.0",
+  "description": "simple telegram bot for practice",
+  "main": "index.js",
+  "author": "Emir",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "dev": "nodemon index.js",
+    "start": "node index.js"
+  },
+  "dependencies": {
+    "crypto": "^1.0.1",
+    "dotenv": "^10.0.0",
+    "express": "^4.17.1",
+    "mongoose": "^5.13.4",
+    "node": "^16.5.0",
+    "node-telegram-bot-api": "^0.54.0",
+    "nodemon": "^2.0.12"
+  }
+}
